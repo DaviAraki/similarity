@@ -1,4 +1,6 @@
+import Navbar from '@/components/Navbar'
 import Providers from '@/components/Providers'
+import { Toaster } from '@/components/ui/Toast'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import { Inter } from 'next/font/google'
@@ -16,7 +18,14 @@ export default function RootLayout({
       className={cn('bg-w text-slate-900 antialiased', inter.className)}
     >
       <body className='min-h-screen bg-slate-50 dark:bg-slate-900 antialiased'>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+
+          <Toaster position='bottom-right' />
+
+          {/* @ts-expect-error Server Component*/}
+          <Navbar />
+        </Providers>
 
         <div className='h-40 md:hidden' />
       </body>
